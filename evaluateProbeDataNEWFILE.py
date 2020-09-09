@@ -8,7 +8,7 @@ import array
 import numpy as np
 
 FileInput = open('out.txt')
-"""
+
 #Matrix for newfile
 probe,mean,std,var =   ([[],
                         [],
@@ -23,33 +23,12 @@ probe,mean,std,var =   ([[],
                         [],
                         []] for z in range (4))
 
-"""
-
-#Matrix for oldfile
-probe,mean,std,var =   ([[],
-                        [],
-                        [],
-                        [],
-                        [],
-                        [],
-                        [],
-                        []] for z in range (4))
-
-
-"""
-#Matrix for DecentralDummy
-probe,mean,std,var =   ([[],
-                         [],
-                        []] for z in range (4))
-"""
 i = 0
 j = 0
 cnt = 0
 sumTemp = 0
 
 newfilecnt = 11
-oldfilecnt = 7
-decentralcnt = 2
 
 while 1: 
       
@@ -73,14 +52,14 @@ while 1:
         sumTemp += temp
         i += 1
         cnt += 1
-        if i == oldfilecnt:
+        if i == newfilecnt:
             probe[i].append(sumTemp)
             sumTemp = 0
             i = 0
   
 FileOutput = open('result.txt',"w")
 
-for j in range(oldfilecnt+1):
+for j in range(newfilecnt+1):
     #creating mean
     FileOutput.write("Mean of probe " + str(j)+ ": ")
     mean[j] = np.mean(probe[j])
@@ -89,7 +68,7 @@ for j in range(oldfilecnt+1):
     FileOutput.write("\n")
 FileOutput.write("\n")
 
-for j in range(oldfilecnt+1):
+for j in range(newfilecnt+1):
     #creating variance
     FileOutput.write("Var of probe " + str(j)+ ": ")
     var[j] = np.var(probe[j])
@@ -98,7 +77,7 @@ for j in range(oldfilecnt+1):
     FileOutput.write("\n")
 FileOutput.write("\n")
    
-for j in range(oldfilecnt+1):
+for j in range(newfilecnt+1):
     #creating standard aviation
     FileOutput.write("Std of probe " + str(j)+ ": ")
     std[j] = np.std(probe[j])
@@ -107,7 +86,7 @@ for j in range(oldfilecnt+1):
     FileOutput.write("\n")
 FileOutput.write("\n")
 
-FileOutput.write("Measurement Count= "+ str(cnt/oldfilecnt))
+FileOutput.write("Measurement Count= "+ str(cnt/newfilecnt))
     
 FileInput.close() 
 FileOutput.close() 
